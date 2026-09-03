@@ -97,6 +97,22 @@ section { padding: 0 var(--gutter); }
 
 .nav__links a:hover { color: var(--text); }
 
+.nav__about-btn {
+  background: none;
+  border: 1px solid var(--line);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 14px;
+  padding: 8px 18px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.nav__about-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
 /* ===== HERO ===== */
 .hero {
   min-height: 92vh;
@@ -304,6 +320,112 @@ section { padding: 0 var(--gutter); }
   border-top: 1px solid var(--line);
 }
 
+/* ===== MEN HAQIMDA (modal) ===== */
+.about-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 5, 6, 0.82);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.about-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.about-modal {
+  position: relative;
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  max-width: 560px;
+  width: 100%;
+  padding: 56px 44px;
+  transform: translateY(14px);
+  transition: transform 0.25s ease;
+}
+
+.about-overlay.is-open .about-modal {
+  transform: translateY(0);
+}
+
+.about-modal__close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 18px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 8px;
+}
+
+.about-modal__close:hover { color: var(--text); }
+
+.about-modal__role {
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0 0 10px;
+}
+
+.about-modal__name {
+  font-size: 44px;
+  margin-bottom: 22px;
+}
+
+.about-modal__bio {
+  color: var(--text-muted);
+  font-size: 16px;
+  line-height: 1.7;
+  margin: 0 0 32px;
+  max-width: 46ch;
+}
+
+.about-modal__row {
+  padding: 18px 0;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.about-modal__label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.about-modal__value {
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.about-modal__btn {
+  display: inline-block;
+  margin-top: 32px;
+  padding: 14px 28px;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-size: 14px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.about-modal__btn:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 720px) {
   :root { --gutter: 6vw; }
@@ -319,4 +441,7 @@ section { padding: 0 var(--gutter); }
   .services__list li { flex-direction: column; gap: 6px; }
 
   .footer { flex-direction: column; gap: 8px; }
+
+  .about-modal { padding: 40px 24px; }
+  .about-modal__name { font-size: 34px; }
 }
