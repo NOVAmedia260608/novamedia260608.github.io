@@ -1,0 +1,44 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "site"
+    label: "Sayt kontenti"
+    files:
+      - file: "data/site.json"
+        label: "NOVA media — kontent"
+        name: "site"
+        fields:
+          - label: "Bosh sahifa (Hero)"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Orqa fon video", name: "video", widget: "file" }
+
+          - label: "Portret rasm (shaffof PNG)"
+            name: "portrait"
+            widget: "image"
+
+          - label: "Men haqimda"
+            name: "about"
+            widget: "object"
+            fields:
+              - { label: "Taxallus", name: "alias", widget: "string" }
+              - { label: "Kasb / yo'nalish", name: "role", widget: "string" }
+              - { label: "Tajriba va qisqa bio", name: "experience", widget: "text" }
+              - { label: "Jihozlar", name: "gear", widget: "text" }
+              - { label: "Montaj dasturlari", name: "software", widget: "text" }
+
+          - label: "Ishlar (portfolio kartalari)"
+            name: "works"
+            widget: "list"
+            summary: "{{title}}"
+            fields:
+              - { label: "Sarlavha", name: "title", widget: "string" }
+              - { label: "Kategoriya", name: "category", widget: "string" }
+              - { label: "Video fayl", name: "video", widget: "file" }
+              - { label: "Katta (wide) karta", name: "wide", widget: "boolean", default: false }
