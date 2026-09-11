@@ -1,0 +1,39 @@
+{
+  "hero": {
+    "video": "assets/uploads/hero-bg.mp4"
+  },
+  "portrait": "assets/uploads/portrait.png",
+  "about": {
+    "alias": "NOVA owner",
+    "role": "Videograf & Videomontajchi",
+    "experience": "2 yillik tajribaga ega videograf va videomontajchiman. Asosan Instagram va YouTube platformalari uchun video suratga olib, montaj qilaman. Shu jarayonda deyarli barcha turdagi kontent bilan ishlaganman: storytelling, tutorial, food, travel, party va head-talking formatlari.",
+    "gear": "Professional Sony kamera, asosiy va qo'shimcha yorug'lik uchun Nanlite & Godox",
+    "software": "After Effects, Premiere Pro, CapCut — professional darajada"
+  },
+  "works": [
+    {
+      "title": "To'y filmi — Diyor & Malika",
+      "category": "Video suratga olish, Montaj",
+      "video": "assets/uploads/project1.mp4",
+      "wide": true
+    },
+    {
+      "title": "Brend reklama roligi",
+      "category": "Kommersiya, Motion grafika",
+      "video": "assets/uploads/project2.mp4",
+      "wide": false
+    },
+    {
+      "title": "Instagram reels seriyasi",
+      "category": "Ijtimoiy tarmoq kontenti",
+      "video": "assets/uploads/project3.mp4",
+      "wide": false
+    },
+    {
+      "title": "Konsert va tadbir aftermovie",
+      "category": "Video suratga olish, Rang korreksiyasi",
+      "video": "assets/uploads/project4.mp4",
+      "wide": true
+    }
+  ]
+}
