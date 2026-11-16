@@ -391,7 +391,7 @@ em { font-style: normal; color: var(--accent); }
 .skills {
   margin-top: 100px;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 40px;
 }
 
@@ -675,7 +675,7 @@ em { font-style: normal; color: var(--accent); }
 /* ===== PLANSHET ===== */
 @media (max-width: 1000px) {
   .about { grid-template-columns: 1fr; gap: 48px; }
-  .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px 40px; }
+  .skills { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px 32px; }
   .project { grid-template-columns: 80px 1fr; }
   .project__role { grid-column: 2; }
 }
@@ -718,7 +718,7 @@ em { font-style: normal; color: var(--accent); }
   .section { padding-top: 96px; padding-bottom: 96px; }
   .section__head { margin-bottom: 44px; gap: 16px; }
 
-  .skills { margin-top: 64px; grid-template-columns: 1fr 1fr; gap: 40px 24px; }
+  .skills { margin-top: 64px; grid-template-columns: 1fr; gap: 40px; }
 
   .project { grid-template-columns: 1fr; gap: 10px; padding: 32px 0; }
   .project__role { grid-column: auto; white-space: normal; }
