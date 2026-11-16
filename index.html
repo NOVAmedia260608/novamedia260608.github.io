@@ -4,133 +4,244 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NOVA media — Videograf &amp; Videomontajchi</title>
+<meta name="description" content="NOVA media — videograf va videomontajchi portfoliosi. Instagram va YouTube uchun video suratga olish, montaj, motion grafika va rang korreksiyasi. Toshkent.">
+<meta name="theme-color" content="#0a0a0b">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="NOVA media — Videograf &amp; Videomontajchi">
+<meta property="og:description" content="Har bir kadr — bir hikoya. Video suratga olish, montaj va motion grafika.">
+<meta property="og:url" content="https://novamedia260608.github.io/">
+<meta property="og:image" content="https://images.unsplash.com/photo-1781127445118-8140677fdea1?fm=jpg&amp;q=70&amp;w=1200&amp;h=630&amp;fit=crop&amp;crop=entropy">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
 
+  <!-- Orqa fon: to'q qoraytirilgan kinematografik rasm -->
+  <div class="backdrop" aria-hidden="true"></div>
+
   <!-- ===== NAVIGATSIYA ===== -->
-  <header class="nav">
+  <header class="nav" id="nav">
     <a href="#top" class="nav__logo">NOVA<span>media</span></a>
-    <nav class="nav__links">
-      <a href="#ishlar">Ishlar</a>
-      <a href="#xizmatlar">Xizmatlar</a>
-      <a href="#bog'lanish">Bog'lanish</a>
-      <button type="button" class="nav__about-btn" id="aboutBtn">Men haqimda</button>
+
+    <button type="button" class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Menyuni ochish">
+      <span></span><span></span>
+    </button>
+
+    <nav class="nav__links" id="navLinks" aria-label="Asosiy menyu">
+      <a href="#haqimda">Men haqimda</a>
+      <a href="#loyihalar">Loyihalar</a>
+      <a href="#videolar">Videolar</a>
+      <a href="#boglanish" class="nav__cta">Bog'lanish</a>
     </nav>
   </header>
 
-  <!-- ===== HERO ===== -->
-  <section class="hero" id="top">
-    <p class="hero__role">Videograf &amp; Videomontajchi</p>
-    <h1 class="hero__title">Har bir kadr<br>bir hikoya.</h1>
-    <p class="hero__desc">Men NOVA media asoschisi va videografman. Brendlar, shaxsiy loyihalar va ijtimoiy tarmoqlar uchun his-tuyg'u uyg'otadigan videokontent yarataman.</p>
-    <a href="#ishlar" class="hero__scroll">Ishlarni ko'rish ↓</a>
-  </section>
+  <main>
 
-  <!-- ===== ISHLAR / PORTFOLIO ===== -->
-  <section class="works" id="ishlar">
-    <div class="works__head">
-      <h2>Ishlar</h2>
-      <p>Tanlangan loyihalardan namunalar</p>
-    </div>
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="top">
+      <div class="hero__inner">
+        <p class="eyebrow reveal">Videograf &amp; Videomontajchi · Toshkent</p>
+        <h1 class="hero__title reveal">Har bir kadr —<br><em>bir hikoya.</em></h1>
+        <p class="hero__desc reveal">NOVA media — brendlar, shaxsiy loyihalar va ijtimoiy tarmoqlar uchun his-tuyg'u uyg'otadigan videokontent.</p>
 
-    <div class="works__grid">
+        <ol class="hero__index reveal" aria-label="Bo'limlar">
+          <li><a href="#haqimda"><span>01</span>Men haqimda</a></li>
+          <li><a href="#loyihalar"><span>02</span>Loyihalar</a></li>
+          <li><a href="#videolar"><span>03</span>Video roliklar</a></li>
+          <li><a href="#boglanish"><span>04</span>Bog'lanish</a></li>
+        </ol>
+      </div>
 
-      <!-- Har bir .work-card ichidagi rasmni o'zingizning haqiqiy loyiha rasmi/video-treyler bilan almashtiring -->
-      <article class="work-card work-card--wide">
-        <div class="work-card__media placeholder-1"></div>
-        <div class="work-card__info">
-          <h3>To'y filmi — Diyor &amp; Malika</h3>
-          <p>Video suratga olish, Montaj</p>
+      <a href="#haqimda" class="hero__scroll" aria-label="Pastga o'tish"><span></span></a>
+    </section>
+
+    <!-- ===== 01 · MEN HAQIMDA ===== -->
+    <section class="section" id="haqimda">
+      <header class="section__head reveal">
+        <span class="section__num">01</span>
+        <h2>Men haqimda</h2>
+      </header>
+
+      <div class="about">
+        <div class="about__lead reveal">
+          <p class="about__big">2 yillik tajribaga ega videograf va videomontajchiman.</p>
+          <p>Asosan Instagram va YouTube platformalari uchun video suratga olib, montaj qilaman. Shu jarayonda deyarli barcha turdagi kontent bilan ishlaganman — storytelling'dan tortib head-talking formatigacha.</p>
         </div>
-      </article>
 
-      <article class="work-card">
-        <div class="work-card__media placeholder-2"></div>
-        <div class="work-card__info">
-          <h3>Brend reklama roligi</h3>
-          <p>Kommersiya, Motion grafika</p>
+        <dl class="about__facts">
+          <div class="reveal">
+            <dt>Tajriba</dt>
+            <dd>2+ yil</dd>
+          </div>
+          <div class="reveal">
+            <dt>Platformalar</dt>
+            <dd>Instagram, YouTube</dd>
+          </div>
+          <div class="reveal">
+            <dt>Shahar</dt>
+            <dd>Toshkent</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="skills">
+        <div class="skills__col reveal">
+          <h3>Ko'nikmalar</h3>
+          <ul>
+            <li>Video suratga olish</li>
+            <li>Video montaj</li>
+            <li>Motion grafika</li>
+            <li>Rang korreksiyasi</li>
+          </ul>
         </div>
-      </article>
-
-      <article class="work-card">
-        <div class="work-card__media placeholder-3"></div>
-        <div class="work-card__info">
-          <h3>Instagram reels seriyasi</h3>
-          <p>Ijtimoiy tarmoq kontenti</p>
+        <div class="skills__col reveal">
+          <h3>Formatlar</h3>
+          <ul>
+            <li>Storytelling</li>
+            <li>Tutorial</li>
+            <li>Food &amp; Travel</li>
+            <li>Party &amp; tadbirlar</li>
+            <li>Head-talking</li>
+          </ul>
         </div>
-      </article>
-
-      <article class="work-card work-card--wide">
-        <div class="work-card__media placeholder-4"></div>
-        <div class="work-card__info">
-          <h3>Konsert va tadbir aftermovie</h3>
-          <p>Video suratga olish, Rang korreksiyasi</p>
+        <div class="skills__col reveal">
+          <h3>Dasturlar</h3>
+          <ul>
+            <li>Adobe After Effects</li>
+            <li>Adobe Premiere Pro</li>
+            <li>CapCut</li>
+          </ul>
         </div>
-      </article>
+        <div class="skills__col reveal">
+          <h3>Jihozlar</h3>
+          <ul>
+            <li>Sony kamera</li>
+            <li>Nanlite yorug'lik</li>
+            <li>Godox yorug'lik</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-    </div>
-  </section>
+    <!-- ===== 02 · LOYIHALAR ===== -->
+    <section class="section" id="loyihalar">
+      <header class="section__head reveal">
+        <span class="section__num">02</span>
+        <h2>Birga ishlagan loyihalar</h2>
+      </header>
 
-  <!-- ===== XIZMATLAR ===== -->
-  <section class="services" id="xizmatlar">
-    <h2>Xizmatlar</h2>
-    <ul class="services__list">
-      <li>
-        <span class="services__name">Video suratga olish</span>
-        <span class="services__desc">To'y, tadbir, kontent va kommersiya suratga olishlar</span>
-      </li>
-      <li>
-        <span class="services__name">Video montaj</span>
-        <span class="services__desc">Hikoyaga asoslangan, ritmik montaj</span>
-      </li>
-      <li>
-        <span class="services__name">Motion grafika</span>
-        <span class="services__desc">Animatsiyali matn, logotip va o'tishlar</span>
-      </li>
-      <li>
-        <span class="services__name">Rang korreksiyasi</span>
-        <span class="services__desc">Kino uslubidagi rang va tonlash</span>
-      </li>
-    </ul>
-  </section>
+      <!-- Har bir loyiha — bitta <article class="project">. Nusxa olib, matnini almashtiring. -->
+      <div class="projects">
+        <article class="project reveal">
+          <span class="project__year">2026</span>
+          <div class="project__body">
+            <h3>Loyiha nomi</h3>
+            <p>Bu yerga loyiha haqida qisqa ma'lumot yoziladi: kim bilan, qanday maqsadda va natijasi.</p>
+          </div>
+          <span class="project__role">Suratga olish · Montaj</span>
+        </article>
 
-  <!-- ===== BOG'LANISH ===== -->
-  <section class="contact" id="bog'lanish">
-    <h2>Loyihangiz bormi?</h2>
-    <p>Keling, birga muhokama qilamiz.</p>
-    <a href="https://t.me/Obid_2606" target="_blank" class="contact__btn">Telegram: @Obid_2606</a>
-  </section>
+        <article class="project reveal">
+          <span class="project__year">2025</span>
+          <div class="project__body">
+            <h3>Loyiha nomi</h3>
+            <p>Bu yerga loyiha haqida qisqa ma'lumot yoziladi: kim bilan, qanday maqsadda va natijasi.</p>
+          </div>
+          <span class="project__role">Montaj · Motion</span>
+        </article>
+
+        <article class="project reveal">
+          <span class="project__year">2025</span>
+          <div class="project__body">
+            <h3>Loyiha nomi</h3>
+            <p>Bu yerga loyiha haqida qisqa ma'lumot yoziladi: kim bilan, qanday maqsadda va natijasi.</p>
+          </div>
+          <span class="project__role">Rang korreksiyasi</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== 03 · VIDEO ROLIKLAR ===== -->
+    <section class="section" id="videolar">
+      <header class="section__head reveal">
+        <span class="section__num">03</span>
+        <h2>Video roliklar</h2>
+      </header>
+
+      <!--
+        Har bir video — bitta <article class="reel">.
+        data-video ga YouTube havolasi yoki .mp4 fayl yo'li yoziladi.
+        data-video bo'sh bo'lsa, karta "Tez orada" holatida turadi.
+        Muqova rasmi uchun: <div class="reel__thumb" style="background-image:url('assets/...jpg')">
+      -->
+      <div class="reels">
+        <article class="reel reel--wide reveal" data-video="">
+          <div class="reel__thumb t1"><span class="reel__play" aria-hidden="true"></span></div>
+          <div class="reel__info">
+            <h3>Video nomi</h3>
+            <p>Storytelling · Montaj</p>
+          </div>
+        </article>
+
+        <article class="reel reveal" data-video="">
+          <div class="reel__thumb t2"><span class="reel__play" aria-hidden="true"></span></div>
+          <div class="reel__info">
+            <h3>Video nomi</h3>
+            <p>Instagram Reels</p>
+          </div>
+        </article>
+
+        <article class="reel reveal" data-video="">
+          <div class="reel__thumb t3"><span class="reel__play" aria-hidden="true"></span></div>
+          <div class="reel__info">
+            <h3>Video nomi</h3>
+            <p>Food · Travel</p>
+          </div>
+        </article>
+
+        <article class="reel reel--wide reveal" data-video="">
+          <div class="reel__thumb t4"><span class="reel__play" aria-hidden="true"></span></div>
+          <div class="reel__info">
+            <h3>Video nomi</h3>
+            <p>Tadbir · Rang korreksiyasi</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== 04 · BOG'LANISH ===== -->
+    <section class="section contact" id="boglanish">
+      <header class="section__head reveal">
+        <span class="section__num">04</span>
+        <h2>Bog'lanish</h2>
+      </header>
+
+      <div class="contact__body">
+        <p class="contact__big reveal">Loyihangiz bormi?<br><em>Keling, birga muhokama qilamiz.</em></p>
+        <a href="https://t.me/Obid_2606" target="_blank" rel="noopener" class="btn reveal">Telegram: @Obid_2606</a>
+      </div>
+    </section>
+
+  </main>
 
   <footer class="footer">
-    <span>© 2026 NOVA media</span>
+    <span id="copyright">© 2026 NOVA media</span>
     <span>Toshkent, O'zbekiston</span>
   </footer>
 
-  <!-- ===== MEN HAQIMDA (modal) ===== -->
-  <div class="about-overlay" id="aboutOverlay">
-    <div class="about-modal">
-      <button type="button" class="about-modal__close" id="aboutClose" aria-label="Yopish">✕</button>
-
-      <p class="about-modal__role">Videograf &amp; Videomontajchi</p>
-      <h2 class="about-modal__name">NOVA owner</h2>
-
-      <p class="about-modal__bio">2 yillik tajribaga ega videograf va videomontajchiman. Asosan Instagram va YouTube platformalari uchun video suratga olib, montaj qilaman. Shu jarayonda deyarli barcha turdagi kontent bilan ishlaganman: storytelling, tutorial, food, travel, party va head-talking formatlari.</p>
-
-      <div class="about-modal__row">
-        <span class="about-modal__label">Jihozlar</span>
-        <span class="about-modal__value">Professional Sony kamera, asosiy va qo'shimcha yorug'lik uchun Nanlite &amp; Godox</span>
-      </div>
-
-      <div class="about-modal__row">
-        <span class="about-modal__label">Montaj dasturlari</span>
-        <span class="about-modal__value">After Effects, Premiere Pro, CapCut — professional darajada</span>
-      </div>
-
-      <a href="https://t.me/Obid_2606" target="_blank" class="about-modal__btn">Bog'lanish: Telegram</a>
+  <!-- ===== VIDEO PLEYER (modal) ===== -->
+  <div class="video-overlay" id="videoOverlay" role="dialog" aria-modal="true" aria-label="Video" hidden>
+    <div class="video-modal">
+      <button type="button" class="video-modal__close" id="videoClose" aria-label="Yopish">✕</button>
+      <div class="video-modal__frame" id="videoFrame"></div>
     </div>
   </div>
 
