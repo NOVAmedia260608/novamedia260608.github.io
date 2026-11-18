@@ -64,9 +64,12 @@ document.addEventListener("DOMContentLoaded", () => {
     return m ? m[1] : null;
   }
 
+  const modal = overlay.querySelector(".video-modal");
+
   function openVideo(src) {
     const yt = youtubeId(src);
     frame.innerHTML = "";
+    modal.classList.toggle("is-vertical", !yt); // o'z videolarimiz vertikal (Reels)
 
     if (yt) {
       const iframe = document.createElement("iframe");
@@ -81,6 +84,9 @@ document.addEventListener("DOMContentLoaded", () => {
       video.controls = true;
       video.autoplay = true;
       video.playsInline = true;
+      video.addEventListener("loadedmetadata", () => {
+        modal.classList.toggle("is-vertical", video.videoHeight > video.videoWidth);
+      });
       frame.appendChild(video);
     }
 
@@ -102,22 +108,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (lastFocus) lastFocus.focus();
   }
 
+  /* ---------- Video kartalar ---------- */
+  const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
   document.querySelectorAll(".reel").forEach((card) => {
     const src = (card.dataset.video || "").trim();
+    if (!src) return;
 
-    if (!src) {
-      card.classList.add("is-soon");
-      return;
-    }
-
-    // Instagram videolarini saytga joylab bo'lmaydi — yangi oynada ochiladi
-    if (/instagram\.com/.test(src)) {
-      card.classList.add("is-playable");
-      card.addEventListener("click", () => window.open(src, "_blank", "noopener"));
-      return;
-    }
-
-    card.classList.add("is-playable");
     card.tabIndex = 0;
     card.setAttribute("role", "button");
     card.addEventListener("click", () => openVideo(src));
@@ -127,7 +124,92 @@ document.addEventListener("DOMContentLoaded", () => {
         openVideo(src);
       }
     });
+
+    // Kompyuterda sichqoncha ustiga kelganda ovozsiz oldindan ko'rish
+    if (!canHover || youtubeId(src)) return;
+    const thumb = card.querySelector(".reel__thumb");
+    let preview = null;
+
+    card.addEventListener("mouseenter", () => {
+      if (track.classList.contains("is-dragging")) return;
+      if (!preview) {
+        preview = document.createElement("video");
+        preview.src = src;
+        preview.muted = true;
+        preview.loop = true;
+        preview.playsInline = true;
+        preview.preload = "auto";
+        preview.setAttribute("aria-hidden", "true");
+        thumb.insertBefore(preview, thumb.querySelector(".reel__num"));
+      }
+      preview.play().then(() => card.classList.add("is-previewing")).catch(() => {});
+    });
+
+    card.addEventListener("mouseleave", () => {
+      card.classList.remove("is-previewing");
+      if (preview) preview.pause();
+    });
   });
+
+  /* ---------- Gorizontal lenta: strelkalar, progress, sichqoncha bilan tortish ---------- */
+  const track = document.getElementById("reelsTrack");
+  const prevBtn = document.getElementById("reelsPrev");
+  const nextBtn = document.getElementById("reelsNext");
+  const bar = document.getElementById("reelsBar");
+
+  if (track) {
+    const step = () => {
+      const card = track.querySelector(".reel");
+      const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+      const per = card ? card.offsetWidth + gap : 300;
+      return Math.max(per, Math.floor(track.clientWidth / per) * per);
+    };
+
+    prevBtn.addEventListener("click", () => track.scrollBy({ left: -step() }));
+    nextBtn.addEventListener("click", () => track.scrollBy({ left: step() }));
+
+    const update = () => {
+      const max = track.scrollWidth - track.clientWidth;
+      const ratio = max > 0 ? track.scrollLeft / max : 0;
+      const visible = max > 0 ? track.clientWidth / track.scrollWidth : 1;
+      bar.style.width = `${visible * 100}%`;
+      bar.style.transform = `translateX(${(ratio * (1 - visible) / visible) * 100}%)`;
+      prevBtn.disabled = track.scrollLeft <= 2;
+      nextBtn.disabled = track.scrollLeft >= max - 2;
+    };
+    track.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    update();
+
+    // Sichqoncha bilan tortib surish (telefonda barmoq bilan o'zi ishlaydi)
+    let startX = 0, startLeft = 0, moved = false, down = false;
+
+    track.addEventListener("pointerdown", (e) => {
+      if (e.pointerType !== "mouse" || e.button !== 0) return;
+      down = true; moved = false;
+      startX = e.clientX; startLeft = track.scrollLeft;
+    });
+
+    window.addEventListener("pointermove", (e) => {
+      if (!down) return;
+      const dx = e.clientX - startX;
+      if (!moved && Math.abs(dx) > 6) {
+        moved = true;
+        track.classList.add("is-dragging");
+      }
+      if (moved) track.scrollLeft = startLeft - dx;
+    });
+
+    window.addEventListener("pointerup", () => {
+      if (!down) return;
+      down = false;
+      if (moved) {
+        // Tortish paytida kartalar bosilmaydi (pointer-events: none),
+        // shuning uchun qo'yib yuborilganda video ochilib ketmaydi
+        setTimeout(() => track.classList.remove("is-dragging"), 0);
+      }
+    });
+  }
 
   closeBtn.addEventListener("click", closeVideo);
   overlay.addEventListener("click", (e) => {

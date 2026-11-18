@@ -462,42 +462,92 @@ em { font-style: normal; color: var(--accent); }
 
 .project:hover h3 { color: var(--accent); }
 
-/* ===== 03 VIDEO ROLIKLAR ===== */
+/* ===== 03 VIDEO ROLIKLAR — gorizontal skroll ===== */
 .reels {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 64px 40px;
+  /* lenta o'ng tomonda ekran chetigacha cho'ziladi */
+  margin-right: calc(50% - 50vw);
 }
 
-.reel--wide { grid-column: span 2; }
+.reels__track {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding-right: var(--gutter);
+  padding-bottom: 8px;
+  scrollbar-width: none;
+  cursor: grab;
+}
+
+.reels__track::-webkit-scrollbar { display: none; }
+.reels__track.is-dragging { cursor: grabbing; scroll-snap-type: none; scroll-behavior: auto; }
+.reels__track.is-dragging .reel { pointer-events: none; }
+
+.reel {
+  flex: 0 0 clamp(200px, 17vw, 260px);
+  scroll-snap-align: start;
+  cursor: pointer;
+}
 
 .reel__thumb {
   position: relative;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 9 / 16;
   overflow: hidden;
-  background-color: #141416;
-  background-size: cover;
-  background-position: center;
-  transition: transform 0.8s var(--ease), filter 0.5s ease;
-  filter: grayscale(0.5) brightness(0.85);
+  background: #141416;
 }
 
-.reel--wide .reel__thumb { aspect-ratio: 21 / 9; }
+.reel__thumb img,
+.reel__thumb video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
-/* Vaqtinchalik muqovalar (haqiqiy rasm qo'yilgach o'chadi) */
-.t1 { background-image: linear-gradient(120deg, #1b1a18, #2a241b 55%, #121214); }
-.t2 { background-image: linear-gradient(160deg, #15181b, #1f2a2c 60%, #101113); }
-.t3 { background-image: linear-gradient(200deg, #1d1816, #2b1f1a 50%, #111112); }
-.t4 { background-image: linear-gradient(100deg, #121315, #23252b 50%, #16130f); }
+.reel__thumb img {
+  filter: grayscale(0.4) brightness(0.8);
+  transition: filter 0.5s ease, transform 0.9s var(--ease);
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+.reel__thumb video { opacity: 0; transition: opacity 0.4s ease; }
+.reel.is-previewing .reel__thumb video { opacity: 1; }
+
+.reel__thumb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10,10,11,0.45) 0%, transparent 25%, transparent 70%, rgba(10,10,11,0.5) 100%);
+  pointer-events: none;
+}
+
+.reel__num,
+.reel__dur {
+  position: absolute;
+  top: 14px;
+  z-index: 1;
+  font-family: var(--font-label);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+}
+
+.reel__num { left: 16px; color: var(--accent); }
+.reel__dur { right: 16px; color: var(--text-muted); }
 
 .reel__play {
   position: absolute;
+  z-index: 1;
   top: 50%; left: 50%;
-  width: 64px; height: 64px;
-  margin: -32px 0 0 -32px;
-  border: 1px solid rgba(236, 235, 230, 0.5);
+  width: 60px; height: 60px;
+  margin: -30px 0 0 -30px;
+  border: 1px solid rgba(236, 235, 230, 0.55);
   border-radius: 50%;
-  transition: border-color 0.3s ease, transform 0.4s var(--ease);
+  transition: border-color 0.3s ease, transform 0.4s var(--ease), opacity 0.3s ease;
 }
 
 .reel__play::after {
@@ -510,50 +560,72 @@ em { font-style: normal; color: var(--accent); }
   border-color: transparent transparent transparent var(--text);
 }
 
-.reel.is-playable { cursor: pointer; }
+.reel:hover .reel__thumb img,
+.reel:focus-visible .reel__thumb img { filter: grayscale(0) brightness(1); transform: scale(1.03); }
+.reel:hover .reel__play { border-color: var(--accent); transform: scale(1.08); }
+.reel.is-previewing .reel__play { opacity: 0; }
 
-.reel.is-playable:hover .reel__thumb { filter: grayscale(0) brightness(1); }
-.reel.is-playable:hover .reel__play { border-color: var(--accent); transform: scale(1.08); }
-
-.reel.is-soon .reel__play { display: none; }
-
-.reel.is-soon .reel__thumb::after {
-  content: "Tez orada";
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-label);
-  font-size: 14px;
-  letter-spacing: 0.24em;
-  color: var(--text-faint);
-}
-
-.reel__info {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 16px;
-  flex-wrap: wrap;
-  padding-top: 20px;
-}
+.reel__info { padding-top: 16px; }
 
 .reel__info h3 {
   font-family: var(--font-title);
   font-weight: 700;
-  font-size: 20px;
-  letter-spacing: 0.04em;
+  font-size: 18px;
+  line-height: 1.3;
+  transition: color 0.25s ease;
 }
 
+.reel:hover .reel__info h3 { color: var(--accent); }
+
 .reel__info p {
-  margin: 0;
+  margin: 6px 0 0;
   font-family: var(--font-label);
-  font-size: 13px;
+  font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--text-muted);
 }
+
+.reels__controls {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin-top: 40px;
+  padding-right: var(--gutter);
+}
+
+.reels__progress {
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+  position: relative;
+  overflow: hidden;
+}
+
+.reels__progress span {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 20%;
+  background: var(--accent);
+  transition: transform 0.15s linear;
+}
+
+.reels__arrows { display: flex; gap: 12px; }
+
+.reels__btn {
+  width: 52px;
+  height: 52px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: none;
+  color: var(--text);
+  font-size: 18px;
+  cursor: pointer;
+  transition: border-color 0.25s ease, color 0.25s ease, opacity 0.25s ease;
+}
+
+.reels__btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+.reels__btn:disabled { opacity: 0.3; cursor: default; }
 
 /* ===== 04 BOG'LANISH ===== */
 .contact__body {
@@ -666,6 +738,18 @@ em { font-style: normal; color: var(--accent); }
   background: #000;
 }
 
+.video-modal.is-vertical {
+  width: auto;
+  max-width: none;
+}
+
+.video-modal.is-vertical .video-modal__frame {
+  height: min(86vh, 960px);
+  height: min(86svh, 960px);
+  aspect-ratio: 9 / 16;
+  max-width: calc(100vw - 48px);
+}
+
 .video-modal__frame iframe,
 .video-modal__frame video {
   position: absolute;
@@ -759,9 +843,10 @@ em { font-style: normal; color: var(--accent); }
   .project { grid-template-columns: 1fr; gap: 10px; padding: 32px 0; }
   .project__role { grid-column: auto; white-space: normal; }
 
-  .reels { grid-template-columns: 1fr; gap: 48px; }
-  .reel--wide { grid-column: auto; }
-  .reel--wide .reel__thumb { aspect-ratio: 16 / 9; }
+  .reels__track { gap: 14px; }
+  .reel { flex-basis: 64vw; }
+  .reels__controls { margin-top: 28px; }
+  .reels__btn { width: 44px; height: 44px; }
 
   .contact__body { flex-direction: column; align-items: stretch; }
 
