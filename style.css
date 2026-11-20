@@ -249,9 +249,9 @@ em { font-style: normal; color: var(--accent); }
   margin: 72px 0 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   border-top: 1px solid var(--line);
-  max-width: 880px;
+  max-width: 680px;
 }
 
 .hero__index li + li { border-left: 1px solid var(--line); }
@@ -415,54 +415,36 @@ em { font-style: normal; color: var(--accent); }
   color: var(--text-muted);
 }
 
-/* ===== 02 LOYIHALAR ===== */
-.projects { border-top: 1px solid var(--line); }
+/* ===== 02 VIDEO ROLIKLAR — ikkita gorizontal lenta ===== */
+.reels-group + .reels-group { margin-top: 120px; }
 
-.project {
-  display: grid;
-  grid-template-columns: 120px 1fr auto;
-  gap: 40px;
+.reels-group__head {
+  display: flex;
+  justify-content: space-between;
   align-items: baseline;
-  padding: 40px 0;
-  border-bottom: 1px solid var(--line);
-  transition: background 0.3s ease;
+  gap: 24px 48px;
+  flex-wrap: wrap;
+  margin-bottom: 36px;
 }
 
-.project__year {
-  font-family: var(--font-label);
-  font-size: 15px;
-  letter-spacing: 0.1em;
-  color: var(--text-faint);
-}
-
-.project h3 {
-  font-family: var(--font-title);
-  font-weight: 700;
-  font-size: clamp(20px, 1.9vw, 24px);
-  letter-spacing: 0.04em;
-  margin-bottom: 10px;
-  transition: color 0.3s ease;
-}
-
-.project p {
-  margin: 0;
-  max-width: 60ch;
-  color: var(--text-muted);
-  font-weight: 300;
-}
-
-.project__role {
-  font-family: var(--font-label);
-  font-size: 13px;
-  letter-spacing: 0.14em;
+.reels-group__head h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(34px, 4vw, 56px);
+  line-height: 0.95;
+  letter-spacing: 0.01em;
   text-transform: uppercase;
-  color: var(--text-muted);
-  white-space: nowrap;
+  color: var(--accent);
 }
 
-.project:hover h3 { color: var(--accent); }
+.reels-group__head p {
+  margin: 0;
+  max-width: 46ch;
+  font-weight: 300;
+  font-size: 15px;
+  color: var(--text-muted);
+}
 
-/* ===== 03 VIDEO ROLIKLAR — gorizontal skroll ===== */
 .reels {
   /* lenta o'ng tomonda ekran chetigacha cho'ziladi */
   margin-right: calc(50% - 50vw);
@@ -796,8 +778,6 @@ em { font-style: normal; color: var(--accent); }
 @media (max-width: 1000px) {
   .about { grid-template-columns: 1fr; gap: 48px; }
   .skills { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px 32px; }
-  .project { grid-template-columns: 80px 1fr; }
-  .project__role { grid-column: 2; }
 }
 
 /* ===== TELEFON ===== */
@@ -826,12 +806,9 @@ em { font-style: normal; color: var(--accent); }
   .hero { padding-top: 110px; }
   .hero__desc { font-size: 16px; }
 
-  .hero__index { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 56px; }
-  .hero__index li + li { border-left: none; }
-  .hero__index li:nth-child(even) { border-left: 1px solid var(--line); }
-  .hero__index li:nth-child(n+3) { border-top: 1px solid var(--line); }
-  .hero__index a { padding: 16px 16px 12px; }
-  .hero__index li:nth-child(odd) a { padding-left: 0; }
+  .hero__index { margin-top: 56px; }
+  .hero__index a { padding: 16px 12px 12px; font-size: 14px; }
+  .hero__index li:first-child a { padding-left: 0; }
 
   .hero__scroll { display: none; }
 
@@ -840,9 +817,9 @@ em { font-style: normal; color: var(--accent); }
 
   .skills { margin-top: 64px; grid-template-columns: 1fr; gap: 40px; }
 
-  .project { grid-template-columns: 1fr; gap: 10px; padding: 32px 0; }
-  .project__role { grid-column: auto; white-space: normal; }
 
+  .reels-group + .reels-group { margin-top: 88px; }
+  .reels-group__head { margin-bottom: 24px; }
   .reels__track { gap: 14px; }
   .reel { flex-basis: 64vw; }
   .reels__controls { margin-top: 28px; }

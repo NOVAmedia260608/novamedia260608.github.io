@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let preview = null;
 
     card.addEventListener("mouseenter", () => {
-      if (track.classList.contains("is-dragging")) return;
+      if (card.closest(".reels__track").classList.contains("is-dragging")) return;
       if (!preview) {
         preview = document.createElement("video");
         preview.src = src;
@@ -151,13 +151,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  /* ---------- Gorizontal lenta: strelkalar, progress, sichqoncha bilan tortish ---------- */
-  const track = document.getElementById("reelsTrack");
-  const prevBtn = document.getElementById("reelsPrev");
-  const nextBtn = document.getElementById("reelsNext");
-  const bar = document.getElementById("reelsBar");
+  /* ---------- Gorizontal lentalar: strelkalar, progress, sichqoncha bilan tortish ---------- */
+  document.querySelectorAll(".reels").forEach((wrap) => {
+    const track = wrap.querySelector(".reels__track");
+    const prevBtn = wrap.querySelector(".reels__prev");
+    const nextBtn = wrap.querySelector(".reels__next");
+    const bar = wrap.querySelector(".reels__bar");
 
-  if (track) {
     const step = () => {
       const card = track.querySelector(".reel");
       const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
@@ -203,13 +203,11 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("pointerup", () => {
       if (!down) return;
       down = false;
-      if (moved) {
-        // Tortish paytida kartalar bosilmaydi (pointer-events: none),
-        // shuning uchun qo'yib yuborilganda video ochilib ketmaydi
-        setTimeout(() => track.classList.remove("is-dragging"), 0);
-      }
+      // Tortish paytida kartalar bosilmaydi (pointer-events: none),
+      // shuning uchun qo'yib yuborilganda video ochilib ketmaydi
+      if (moved) setTimeout(() => track.classList.remove("is-dragging"), 0);
     });
-  }
+  });
 
   closeBtn.addEventListener("click", closeVideo);
   overlay.addEventListener("click", (e) => {
