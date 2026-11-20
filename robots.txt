@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://novamedia-uz.github.io/sitemap.xml
